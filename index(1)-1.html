@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<title>GIFT DROP — Collectibles</title>
+<link rel="preconnect" href="https://api.changes.tg"><link rel="preconnect" href="https://cdn.changes.tg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--bg:#0b1220;--surface:#111d2e;--surface2:#17263a;--line:#293d57;--text:#edf4ff;--muted:#91a4bd;--blue:#3caaff;--cyan:#63dfff;--gold:#ffd579;--green:#61d9a7;--red:#ff7188}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#17466c 0,transparent 45%),var(--bg);color:var(--text);font:14px Manrope,system-ui,sans-serif}button,input{font:inherit}button{cursor:pointer;color:inherit;border:0}.shell{max-width:1240px;margin:auto;padding:0 22px 60px}
+.top{height:68px;position:sticky;top:0;z-index:20;background:#0b1423ed;backdrop-filter:blur(18px);border-bottom:1px solid #ffffff12}.topin{height:100%;max-width:1240px;padding:0 22px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:1px;white-space:nowrap}.logo{width:34px;height:34px;border-radius:11px;background:linear-gradient(140deg,#70e5ff,#2785e8);display:grid;place-items:center;color:#082039;font-size:20px;box-shadow:0 5px 20px #209fff45}.nav{height:100%;display:flex;align-items:center;gap:2px}.nav button{height:100%;padding:0 16px;background:transparent;color:#91a6c0;font-size:11px;font-weight:900;letter-spacing:.5px;border-bottom:2px solid transparent}.nav button.active,.nav button:hover{color:#fff;border-bottom-color:var(--cyan);background:linear-gradient(0deg,#3ebdff13,transparent)}.topright{display:flex;align-items:center;gap:10px}.balance{background:#152a41;border:1px solid #2b4967;color:var(--gold);font-weight:900;font-size:11px;padding:9px 12px;border-radius:10px;white-space:nowrap}.login{background:linear-gradient(100deg,#248fe0,#3eb9e9);padding:10px 13px;border-radius:10px;font-size:11px;font-weight:900;white-space:nowrap}.user{display:none;align-items:center;gap:8px;font-size:11px;color:#dbeaff}.avatar{width:29px;height:29px;border-radius:50%;background:linear-gradient(135deg,#39b7ec,#8070fa);display:grid;place-items:center;font-weight:900}
+.page{display:none}.page.active{display:block}.hero{padding:36px 0 20px;display:flex;justify-content:space-between;align-items:center;gap:20px}.eyebrow{font-size:10px;font-weight:900;letter-spacing:2px;color:var(--cyan)}h1{font-size:clamp(30px,4.5vw,46px);line-height:1.07;margin:10px 0}.hero p{max-width:650px;color:var(--muted);line-height:1.75;font-size:13px;margin:0}.hero-stat{border:1px solid #315b7b;background:linear-gradient(145deg,#183c5b,#142238);padding:15px 23px;border-radius:16px;text-align:center;min-width:130px}.hero-stat b{display:block;font-size:25px;color:var(--cyan)}.hero-stat small{font-size:10px;color:var(--muted)}
+.sectionhead{display:flex;justify-content:space-between;align-items:end;margin:24px 0 13px;gap:10px}.sectionhead h2{font-size:18px;margin:0}.sectionhead span{color:var(--muted);font-size:10px}.toolbar{display:flex;gap:9px;margin-bottom:14px;flex-wrap:wrap}.search{flex:1;min-width:180px;background:#0e1a2a;border:1px solid var(--line);border-radius:10px;padding:11px 13px;color:white;outline:none}.search:focus{border-color:#4db9f2}.filter{background:#15263a;border:1px solid var(--line);color:#c6d5e9;border-radius:10px;padding:0 12px;font-size:11px}.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.giftcard{background:linear-gradient(155deg,#192d45,#101a29 78%);border:1px solid #293e58;border-radius:15px;padding:10px;min-width:0;transition:.18s;overflow:hidden}.giftcard:hover{transform:translateY(-3px);border-color:#4b9bc8;box-shadow:0 12px 30px #0005}.preview{height:132px;border-radius:11px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 42%,#3b9fd44a,transparent 58%),linear-gradient(145deg,#1a3d5b,#142238);display:grid;place-items:center}.preview:after{content:"";position:absolute;inset:12px;border:1px solid #ffffff13;border-radius:50%;pointer-events:none}.anim{width:100%;height:100%;display:grid;place-items:center}.anim svg{max-width:100%;max-height:100%}.preview .loading{font-size:9px;color:#88a2bf}.giftcard h3{font-size:12px;margin:10px 0 3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.giftmeta{font-size:9px;color:var(--muted);display:flex;justify-content:space-between;gap:4px}.cardactions{display:flex;gap:6px;margin-top:10px}.smallbtn{flex:1;background:#1c3854;border:1px solid #345775;padding:8px 5px;border-radius:8px;font-size:9px;font-weight:900}.smallbtn.primary{background:linear-gradient(100deg,#258fe2,#3db8e5);border:0}
+.pager{display:flex;justify-content:center;gap:8px;margin:20px}.pager button{background:#182c43;border:1px solid var(--line);padding:9px 13px;border-radius:9px;font-size:10px}.pager button:disabled{opacity:.35;cursor:default}
+.panel{background:linear-gradient(155deg,#14283e,#0f1929);border:1px solid #2a435f;border-radius:18px;padding:17px}.upgrid{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:12px;align-items:stretch}.slot{min-height:230px;background:#0b1625;border:1px solid #2a405b;border-radius:14px;padding:12px;display:flex;flex-direction:column}.slot.target{border-color:#3d7197;background:radial-gradient(circle at 50% 40%,#1b52734c,transparent 60%),#0b1625}.slotlabel{font-size:9px;color:#8da7c3;font-weight:900;letter-spacing:1px}.slotart{flex:1;display:grid;place-items:center;min-height:120px}.slotart .emoji{font-size:68px}.slotname{text-align:center;font-weight:900;font-size:12px}.slotdesc{text-align:center;color:var(--muted);font-size:9px;margin-top:3px}.slotbtn{margin-top:10px;background:#1b3854;border:1px solid #355b7b;border-radius:8px;padding:8px;font-size:9px;font-weight:900}.odds{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:10px}.percent{font-size:40px;font-weight:900;color:var(--green)}.percent small{font-size:13px}.odds p{font-size:9px;color:var(--muted);margin:4px 0 12px}.track{height:9px;width:100%;background:#293d53;border-radius:20px;overflow:hidden}.track span{display:block;width:0;height:100%;background:linear-gradient(90deg,#38a9ff,#6ce5ff);transition:width .2s}.odds .arrow{font-size:23px;color:var(--cyan);margin:10px}.run{width:100%;background:linear-gradient(100deg,#248fe0,#41c2e9);padding:12px;border-radius:9px;font-size:10px;font-weight:900}.run:disabled{opacity:.4;cursor:not-allowed}.cancel{display:none;width:100%;margin-top:7px;padding:8px;background:#3a2330;border:1px solid #704052;border-radius:8px;font-size:9px;font-weight:900;color:#ff9aac}.invbox{margin-top:13px;background:#0b1625;border:1px solid #273e58;border-radius:13px;padding:12px}.invhead{display:flex;justify-content:space-between;font-size:10px;font-weight:900;margin-bottom:9px}.inventory{display:flex;gap:7px;flex-wrap:wrap}.invitem{display:flex;align-items:center;gap:7px;background:#14263b;border:1px solid #304760;border-radius:9px;padding:7px 9px;text-align:left;font-size:9px}.invitem b{font-size:22px}.invitem.selected{border-color:#62dcff;box-shadow:0 0 0 1px #62dcff55}.muted{color:var(--muted);font-size:10px}
+.profilebox{display:flex;align-items:center;gap:15px;background:linear-gradient(130deg,#183b5b,#142239);border:1px solid #31587a;border-radius:16px;padding:20px}.profile-avatar{width:58px;height:58px;border-radius:19px;background:linear-gradient(135deg,#3db6e8,#8173ff);display:grid;place-items:center;font-size:24px;font-weight:900}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.stat{background:#111f31;border:1px solid var(--line);border-radius:12px;padding:14px}.stat b{font-size:22px;display:block}.stat small{color:var(--muted);font-size:9px}
+.modal{display:none;position:fixed;inset:0;background:#020812d9;z-index:40;place-items:center;padding:15px;backdrop-filter:blur(8px)}.modal.show{display:grid}.modalbox{width:min(680px,100%);max-height:90vh;overflow:auto;background:linear-gradient(155deg,#1a3049,#101a29);border:1px solid #42627f;border-radius:19px;padding:18px;box-shadow:0 25px 80px #0009}.modalhead{display:flex;align-items:center;justify-content:space-between;gap:10px}.modalhead h2{font-size:16px;margin:0}.x{background:#263c55;border-radius:8px;padding:7px 11px}.modelgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:14px}.modeltile{background:#0b1625;border:1px solid #2a4058;border-radius:11px;padding:8px;text-align:center;min-width:0}.modelpreview{height:90px;display:grid;place-items:center}.modelpreview .emoji{font-size:43px}.modeltile b{display:block;font-size:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.modeltile small{font-size:8px;color:var(--muted)}.traits{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.trait{background:#0d1928;border:1px solid #2a4058;border-radius:10px;padding:10px}.trait b{font-size:10px;display:block;margin-bottom:6px}.trait select{width:100%;background:#172a40;border:1px solid #34506d;color:#e7f3ff;border-radius:7px;padding:7px;font-size:9px}.notice{font-size:9px;color:#e9c979;line-height:1.6;margin-top:12px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:60;background:#17304a;border:1px solid #3e688a;padding:10px 14px;border-radius:10px;font-size:10px;display:none;max-width:90vw}.toast.show{display:block}
+footer{border-top:1px solid #ffffff12;margin-top:35px;padding-top:17px;color:#7388a2;font-size:9px;line-height:1.7}footer a{color:#75d7ff}
+@media(max-width:900px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.hero-stat{display:none}}
+@media(max-width:650px){.shell{padding:0 12px 40px}.topin{padding:0 10px;gap:6px}.top{height:59px}.brand{font-size:10px;gap:6px}.logo{width:29px;height:29px}.nav button{padding:0 7px;font-size:9px}.balance{padding:8px;font-size:9px}.login{padding:8px;font-size:9px}.user{display:none!important}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.preview{height:125px}.upgrid{grid-template-columns:1fr 1fr;gap:8px}.odds{grid-column:1/-1;grid-row:2}.slot{min-height:190px;padding:9px}.slotart .emoji{font-size:55px}.modelgrid{grid-template-columns:repeat(3,1fr)}.traits{grid-template-columns:1fr}.hero{padding-top:25px}.hero p{font-size:11px}}
+
+/* GIFT DROP visual/performance refresh */
+:root{
+ --bg:#080f1c;--surface:#101d30;--surface2:#172943;--line:#29435f;
+ --text:#f3f8ff;--muted:#9aacc4;--blue:#4aaeff;--cyan:#75e4ff;
+}
+html{scroll-behavior:smooth}
+body{
+ background:
+  radial-gradient(ellipse 70% 42% at 50% -12%,#1c5b83a8 0%,transparent 72%),
+  radial-gradient(ellipse 38% 35% at 3% 34%,#174a6a55 0%,transparent 72%),
+  radial-gradient(ellipse 40% 40% at 100% 68%,#283c7950 0%,transparent 72%),
+  linear-gradient(180deg,#091321 0%,#080f1c 55%,#0a1423 100%);
+ background-attachment:fixed;
+}
+body:before{
+ content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.16;
+ background-image:radial-gradient(#9bdfff 0.65px,transparent .65px);
+ background-size:27px 27px;
+ mask-image:linear-gradient(to bottom,black,transparent 78%);
+}
+.top{background:rgba(7,16,29,.82);border-bottom:1px solid #8bdcff1c;box-shadow:0 8px 30px #0002}
+.logo{box-shadow:0 0 0 5px #42baff12,0 8px 26px #209fff55}
+.hero{padding-top:46px;padding-bottom:28px}
+.hero h1{letter-spacing:-1.8px;text-shadow:0 8px 34px #42baff24}
+.hero-stat{box-shadow:inset 0 1px #ffffff12,0 14px 40px #0003;backdrop-filter:blur(12px)}
+.giftcard,.panel,.profilebox,.modalbox{
+ box-shadow:0 14px 38px #0003,inset 0 1px #ffffff0c;
+}
+.giftcard{background:linear-gradient(155deg,#1b324d 0%,#122238 58%,#101b2b 100%);border-color:#38516d}
+.giftcard:hover{transform:translateY(-4px);box-shadow:0 18px 38px #0006,0 0 0 1px #5ccaff35}
+.preview{
+ height:148px;
+ background:
+  radial-gradient(ellipse at 50% 45%,#4bbfff38 0%,transparent 58%),
+  linear-gradient(145deg,#1b3d5b,#101d30);
+}
+.preview:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 20%,#ffffff08 48%,transparent 72%);transform:translateX(-100%);animation:previewShine 8s ease-in-out infinite}
+.preview:after{inset:13px;border-color:#bdeaff18;box-shadow:0 0 28px #4bbfff0b}
+@keyframes previewShine{0%,72%,100%{transform:translateX(-100%)}88%{transform:translateX(100%)}}
+.anim svg,.modelpreview svg{overflow:visible}
+.anim,.modelpreview{contain:layout paint style}
+.giftcard h3{font-size:12px;letter-spacing:.1px}
+.smallbtn,.filter,.slotbtn,.run,.login{transition:transform .16s ease,filter .16s ease,box-shadow .16s ease}
+.smallbtn:hover,.filter:hover,.slotbtn:hover,.run:hover,.login:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.smallbtn.primary,.run,.login{box-shadow:0 7px 20px #238fe044}
+.panel{background:linear-gradient(145deg,#172d47eF,#0e1a2bed)}
+.slot{background:linear-gradient(155deg,#0d1a2b,#0a1422)}
+.slot.target{box-shadow:inset 0 0 42px #2b9bce13,0 0 0 1px #50c8ff12}
+.percent{text-shadow:0 0 24px #61d9a755}
+.track{background:#273b52;box-shadow:inset 0 2px 5px #0006}
+.track span{box-shadow:0 0 14px #56cfff88}
+.invitem{transition:border-color .15s,background .15s,transform .15s}
+.invitem:hover{transform:translateY(-2px);border-color:#5ab8e9}
+.modalbox{background:linear-gradient(145deg,#1b3552,#101a2a);border-color:#4b6d8b}
+.modeltile{transition:transform .16s,border-color .16s}
+.modeltile:hover{transform:translateY(-2px);border-color:#5aa9d8}
+.toast{box-shadow:0 12px 35px #0008;backdrop-filter:blur(12px)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+@media(max-width:900px){.preview{height:136px}}
+@media(max-width:650px){
+ .hero{padding-top:30px;align-items:flex-start}
+ .preview{height:124px}
+ .giftcard{padding:8px;border-radius:13px}
+ .giftcard:hover{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+</style>
+</head>
+<body>
+<header class="top"><div class="topin">
+ <div class="brand"><div class="logo">✦</div>GIFT DROP</div>
+ <nav class="nav"><button class="active" data-page="catalog" onclick="page('catalog',this)">КАТАЛОГ</button><button data-page="upgrader" onclick="page('upgrader',this)">АПГРЕЙДЕР</button><button data-page="profile" onclick="page('profile',this)">ПРОФИЛЬ</button></nav>
+ <div class="topright"><div class="balance" id="balance">◈ 1 250 ⭐</div><button class="login" id="loginBtn" onclick="loginTelegram()">Войти через Telegram</button><div class="user" id="userBox"><div class="avatar" id="userAvatar">G</div><span id="userName">Профиль</span></div></div>
+</div></header>
+<main class="shell">
+<section class="page active" id="page-catalog">
+ <div class="hero"><div><div class="eyebrow">TELEGRAM COLLECTIBLE GIFTS</div><h1>Настоящие подарки.<br><span style="color:#63dfff">Живые анимации.</span></h1><p>Каталог загружается из открытого индекса Telegram Gifts. Оригинальные TGS-анимации, модели коллекционных подарков, реальные названия, фоны и символы — без подмены эмодзи.</p></div><div class="hero-stat"><b id="totalCount">—</b><small>подарков в каталоге</small></div></div>
+ <div class="sectionhead"><h2>🎁 Каталог подарков</h2><span id="loadStatus">Подключение к каталогу…</span></div>
+ <div class="toolbar"><input class="search" id="search" placeholder="Поиск подарка…" oninput="filterGifts()"><select class="filter" id="sort" onchange="filterGifts()"><option value="name">По названию</option><option value="az">А → Я</option><option value="za">Я → А</option></select><button class="filter" onclick="loadCatalog(true)">↻ Обновить</button></div>
+ <div class="grid" id="giftGrid"></div><div class="pager"><button id="prev" onclick="turnPage(-1)" disabled>← Назад</button><span class="muted" id="pageNum">1 / 1</span><button id="next" onclick="turnPage(1)" disabled>Далее →</button></div>
+</section>
+<section class="page" id="page-upgrader">
+ <div class="hero"><div><div class="eyebrow">UPGRADE TERMINAL</div><h1>Апгрейд<br><span style="color:#63dfff">коллекции.</span></h1><p>Выбери реальную модель из своего демо-инвентаря и цель для апгрейда. В этом прототипе результат симулируется локально — реальные NFT не списываются и не переводятся.</p></div></div>
+ <div class="panel"><div class="sectionhead" style="margin-top:0"><h2>⚡ Контракт апгрейда</h2><span>CS-style</span></div><div class="upgrid">
+ <div class="slot"><div class="slotlabel">ТВОЙ ПРЕДМЕТ</div><div class="slotart" id="sourceAnim"><span class="emoji">🎁</span></div><div class="slotname" id="sourceName">Выбери предмет</div><div class="slotdesc" id="sourceRarity">—</div><button class="slotbtn" onclick="page('catalog')">ОТКРЫТЬ КАТАЛОГ</button></div>
+ <div class="odds"><div class="percent" id="chance">—<small>%</small></div><p>ШАНС УСПЕХА</p><div class="track"><span id="trackFill"></span></div><div class="arrow">➜</div><button class="run" id="runBtn" onclick="runUpgrade()" disabled>ВЫБЕРИ ПРЕДМЕТ</button><button class="cancel" id="cancelBtn" onclick="cancelUpgrade()">ОТМЕНИТЬ АПГРЕЙД</button></div>
+ <div class="slot target"><div class="slotlabel">ЖЕЛАЕМАЯ ЦЕЛЬ</div><div class="slotart" id="targetAnim"><span class="emoji">💎</span></div><div class="slotname" id="targetName">Выбери цель</div><div class="slotdesc" id="targetRarity">Коллекционная модель</div><button class="slotbtn" onclick="chooseTarget()">СМЕНИТЬ ЦЕЛЬ</button></div>
+ </div><div class="invbox"><div class="invhead"><span>ТВОЙ ДЕМО-ИНВЕНТАРЬ</span><span id="invCount">0 ПРЕДМЕТОВ</span></div><div class="inventory" id="inventory"><span class="muted">Добавь подарок из каталога через кнопку «В инвентарь».</span></div></div></div>
+</section>
+<section class="page" id="page-profile">
+ <div class="hero"><div><div class="eyebrow">ACCOUNT CENTER</div><h1>Профиль</h1><p>Вход через Telegram подключается через официальный Login Widget и серверную проверку подписи.</p></div></div>
+ <div class="profilebox"><div class="profile-avatar" id="profileAvatar">G</div><div><b id="profileName">Гость</b><div class="muted" id="profileHandle">Локальный демо-профиль</div></div></div>
+ <div class="stats"><div class="stat"><b id="statInv">0</b><small>В демо-инвентаре</small></div><div class="stat"><b id="statOpen">0</b><small>Добавлено из каталога</small></div><div class="stat"><b id="statStars">1 250</b><small>Тестовый баланс ⭐</small></div></div>
+ <div class="sectionhead"><h2>Настройки входа</h2></div><div class="panel"><p class="muted">Для настоящей авторизации нужно создать Telegram-бота, указать его username в Login Widget и отправлять полученный payload на backend для проверки HMAC-подписи. Токен бота нельзя хранить в HTML/JavaScript.</p><button class="login" onclick="loginTelegram()">Настроить вход через Telegram</button></div>
+</section>
+<footer>
+ <b>Данные и анимации:</b> спасибо <a href="https://t.me/GiftChanges" target="_blank" rel="noopener">@GiftChanges</a> за API (<a href="https://api.changes.tg/" target="_blank" rel="noopener">api.changes.tg</a>) и CDN (<a href="https://cdn.changes.tg/" target="_blank" rel="noopener">cdn.changes.tg</a>). <br>
+ GIFT DROP — независимая демоверсия, не связанная с Telegram. NFT-владение, покупка, передача и TON-операции не выполняются. Для входа требуется серверная проверка Telegram Login.
+</footer>
+</main>
+<div class="modal" id="modelsModal"><div class="modalbox"><div class="modalhead"><div><div class="eyebrow">COLLECTIBLE MODELS</div><h2 id="modalTitle">Модели подарка</h2></div><button class="x" onclick="closeModels()">✕</button></div><div class="muted" id="modalInfo">Настоящие модели из каталога.</div><div class="modelgrid" id="modelGrid"></div><div class="sectionhead"><h2>Фон и символ</h2><span>Атрибуты коллекции</span></div><div class="traits"><div class="trait"><b>BACKDROP · ФОН</b><select id="backdropSelect"><option>Загрузка…</option></select></div><div class="trait"><b>SYMBOL · УЗОР</b><select id="symbolSelect"><option>Загрузка…</option></select></div><div class="trait"><b>PREVIEW</b><div id="traitPreview" class="muted">Выбери атрибуты</div></div></div><p class="notice">Анимации загружаются из открытого CDN. Фоны и символы отображаются по данным коллекции; визуальный предпросмотр атрибутов зависит от доступности файлов у источника.</p></div></div>
+<div class="modal" id="loginModal"><div class="modalbox" style="max-width:430px"><div class="modalhead"><h2>Вход через Telegram</h2><button class="x" onclick="document.getElementById('loginModal').classList.remove('show')">✕</button></div><p class="muted">Чтобы включить реальный вход, укажи username своего Telegram-бота в настройке ниже. На production сервер обязан проверять подпись Telegram Login.</p><input class="search" id="botName" placeholder="username_бота без @" style="width:100%;margin:8px 0"><button class="login" onclick="setupLogin()" style="width:100%">Сохранить username бота</button><div id="loginWidget" style="margin-top:14px"></div><p class="notice">Сейчас сайт не принимает пароль Telegram и не просит код подтверждения. Не вводи их на сторонних страницах.</p></div></div>
+<div class="toast" id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+<script>
+const API='https://api.changes.tg', CDN='https://cdn.changes.tg';
+let gifts=[],filtered=[],pageNo=1,pageSize=25,modelsGift=null,inventory=[],selected=-1,targetModel=null,upgradeTimer=null,upgradeCancelled=false,added=0,stars=1250,telegramUser=null;
+const rarityValue={uncommon:1,rare:2,epic:3,legendary:4};
+function notify(s){let t=document.getElementById('toast');t.textContent=s;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800)}
+function page(name,btn){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+name).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===name));if(name==='profile')renderProfile();if(name==='upgrader')renderInventory();window.scrollTo({top:0,behavior:'smooth'})}
+async function getJSON(url){let r=await fetch(url,{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);return r.json()}
+function normalizeList(data){if(Array.isArray(data))return data.map(x=>typeof x==='string'?{name:x}:x);if(data&&typeof data==='object'){return Object.entries(data).map(([k,v])=>typeof v==='string'?{id:k,name:v}:{id:k,...v})}return []}
+async function loadCatalog(refresh=false){let status=document.getElementById('loadStatus'),grid=document.getElementById('giftGrid');status.textContent='Загружаем реальные данные…';if(!refresh)grid.innerHTML='<div class="muted">Подключаем каталог и получаем список коллекций…</div>';try{let raw=await getJSON(API+'/ids');let list=normalizeList(raw);if(!list.length){let names=await getJSON(API+'/gifts');list=normalizeList(names)}gifts=list.map((x,i)=>({id:x.id||x.giftId||x.gift_id||'',name:x.name||x.gift||x.title||x.telegramName||String(x.id||'Gift '+(i+1))})).filter(x=>x.name).slice(0,150);document.getElementById('totalCount').textContent=gifts.length+'+';status.textContent='Реальные коллекции · '+gifts.length+' в каталоге';filterGifts()}catch(e){status.textContent='Не удалось подключиться к API';grid.innerHTML='<div class="muted">Источник временно недоступен или браузер заблокировал запрос. Проверь соединение и нажми «Обновить».<br><br>API: <a style="color:#75d7ff" href="https://api.changes.tg/" target="_blank">api.changes.tg</a></div>';document.getElementById('totalCount').textContent='—'}}
+function filterGifts(){let q=document.getElementById('search').value.toLowerCase(),sort=document.getElementById('sort').value;filtered=gifts.filter(x=>x.name.toLowerCase().includes(q));if(sort==='az')filtered.sort((a,b)=>a.name.localeCompare(b.name));if(sort==='za')filtered.sort((a,b)=>b.name.localeCompare(a.name));pageNo=1;renderCards()}
+function turnPage(d){pageNo=Math.max(1,Math.min(Math.ceil(filtered.length/pageSize),pageNo+d));renderCards()}
+function renderCards(){activeLotties.forEach((a,k)=>{if(String(k).startsWith('catalog-')){a.destroy();activeLotties.delete(k)}});let grid=document.getElementById('giftGrid'),start=(pageNo-1)*pageSize,subset=filtered.slice(start,start+pageSize);grid.innerHTML='';subset.forEach((g,i)=>{let card=document.createElement('article');card.className='giftcard';let slug=encodeURIComponent(g.name);card.innerHTML=`<div class="preview"><div class="anim" id="anim-${start+i}"><span class="loading">ЗАГРУЗКА TGS…</span></div></div><h3 title="${escapeHTML(g.name)}">${escapeHTML(g.name)}</h3><div class="giftmeta"><span>Telegram Gift</span><span>Original</span></div><div class="cardactions"><button class="smallbtn primary" data-model="${escapeHTML(g.name)}">МОДЕЛИ</button><button class="smallbtn" data-add="${escapeHTML(g.name)}">+ В ИНВЕНТАРЬ</button></div>`;grid.appendChild(card);card.querySelector('[data-model]').onclick=()=>openModels(g);card.querySelector('[data-add]').onclick=()=>addGift(g)});document.getElementById('pageNum').textContent=(filtered.length? pageNo:0)+' / '+Math.max(1,Math.ceil(filtered.length/pageSize));document.getElementById('prev').disabled=pageNo<=1;document.getElementById('next').disabled=pageNo>=Math.ceil(filtered.length/pageSize);loadVisibleAnimations(subset,start)}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+
+const activeLotties=new Map();
+const animationQueue=[];
+const MAX_ACTIVE_ANIMATIONS=8;
+let runningAnimations=0;
+const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const tgsObserver=('IntersectionObserver' in window)?new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  const el=entry.target;
+  if(entry.isIntersecting){
+   scheduleTGS(el);
+   const anim=el.dataset.tgsKey&&activeLotties.get(el.dataset.tgsKey);
+   if(anim&&!reducedMotion)anim.play();
+  }else{
+   const anim=el.dataset.tgsKey&&activeLotties.get(el.dataset.tgsKey);
+   if(anim)anim.pause();
+  }
+ });
+},{rootMargin:'100px 0px',threshold:.01}):null;
+
+function queueTGS(container,url,key){
+ if(!container||container.dataset.tgsLoaded||container.dataset.tgsLoading)return;
+ container.dataset.tgsUrl=url;
+ container.dataset.tgsKey=key||('tgs-'+Math.random().toString(36).slice(2));
+ if(tgsObserver)tgsObserver.observe(container);
+ else scheduleTGS(container);
+}
+function scheduleTGS(container){
+ if(!container||!container.isConnected||container.dataset.tgsLoaded||container.dataset.tgsLoading)return;
+ container.dataset.tgsLoading='1';
+ animationQueue.push(container);
+ pumpTGSQueue();
+}
+function pumpTGSQueue(){
+ while(runningAnimations<MAX_ACTIVE_ANIMATIONS&&animationQueue.length){
+  const el=animationQueue.shift();
+  if(!el||!el.isConnected)continue;
+  runningAnimations++;
+  playTGS(el,el.dataset.tgsUrl,el.dataset.tgsKey)
+   .finally(()=>{runningAnimations--;pumpTGSQueue()});
+ }
+}
+async function playTGS(container,url,key){
+ try{
+  const response=await fetch(url,{cache:'force-cache'});
+  if(!response.ok)throw Error('TGS '+response.status);
+  const buf=await response.arrayBuffer();
+  const raw=window.pako.ungzip(new Uint8Array(buf));
+  const json=JSON.parse(new TextDecoder().decode(raw));
+  if(!container.isConnected)return;
+  container.innerHTML='';
+  const anim=lottie.loadAnimation({
+   container,renderer:'canvas',loop:true,autoplay:!reducedMotion,
+   animationData:json,rendererSettings:{clearCanvas:true,progressiveLoad:true}
+  });
+  container.dataset.tgsLoaded='1';
+  if(key)activeLotties.set(key,anim);
+  if(reducedMotion)anim.goToAndStop(0,true);
+  else if(tgsObserver&&!container.getBoundingClientRect().width)anim.pause();
+ }catch(e){
+  if(container.isConnected)container.innerHTML='<span class="loading">Оригинальная TGS-анимация недоступна</span>';
+ }finally{
+  container.dataset.tgsLoading='';
+ }
+}
+function loadVisibleAnimations(subset,start){
+ subset.forEach((g,i)=>{
+  const el=document.getElementById('anim-'+(start+i));
+  if(!el)return;
+  queueTGS(el,API+'/original/'+encodeURIComponent(g.name)+'.tgs','catalog-'+start+'-'+i);
+ });
+}
+function addGift(g){inventory.push({name:g.name,emoji:'🎁',rarity:'Original',url:API+'/original/'+encodeURIComponent(g.name)+'.tgs'});added++;renderInventory();renderProfile();notify(g.name+' добавлен в демо-инвентарь');}
+async function openModels(g){modelsGift=g;document.getElementById('modelsModal').classList.add('show');document.getElementById('modalTitle').textContent=g.name;document.getElementById('modalInfo').textContent='Получаем модели, фоны и узоры…';document.getElementById('modelGrid').innerHTML='<span class="muted">Загрузка реальных моделей…</span>';try{let [models,backs,symbols]=await Promise.all([getJSON(API+'/models/'+encodeURIComponent(g.name)+'?sorted'),getJSON(API+'/backdrops/'+encodeURIComponent(g.name)+'?sorted'),getJSON(API+'/symbols/'+encodeURIComponent(g.name)+'?sorted')]);models=normalizeList(models);backs=normalizeList(backs);symbols=normalizeList(symbols);document.getElementById('modalInfo').textContent=models.length+' моделей · '+backs.length+' фонов · '+symbols.length+' символов';let mg=document.getElementById('modelGrid');mg.innerHTML='';models.slice(0,80).forEach((m,i)=>{let name=m.name||m.telegramName||m.model||('Model '+(i+1)),rar=m.rarityTier||m.rarity||'Коллекционная';let tile=document.createElement('div');tile.className='modeltile';tile.innerHTML=`<div class="modelpreview" id="model-preview-${i}"><span class="muted">TGS</span></div><b title="${escapeHTML(name)}">${escapeHTML(name)}</b><small>${escapeHTML(String(rar))}</small><button class="smallbtn" style="width:100%;margin-top:7px">В инвентарь</button>`;tile.querySelector('button').onclick=()=>{inventory.push({name:g.name+' · '+name,emoji:'🎁',rarity:rar,url:API+'/model/'+encodeURIComponent(g.name)+'/'+encodeURIComponent(m.name||name)+'.tgs'});added++;renderInventory();renderProfile();notify('Модель добавлена в демо-инвентарь')};mg.appendChild(tile);queueTGS(document.getElementById('model-preview-'+i),API+'/model/'+encodeURIComponent(g.name)+'/'+encodeURIComponent(m.name||name)+'.tgs','model-'+i)});fillSelect('backdropSelect',backs);fillSelect('symbolSelect',symbols);document.getElementById('traitPreview').textContent='Доступно '+backs.length+' фонов и '+symbols.length+' символов.'}catch(e){document.getElementById('modalInfo').textContent='Не удалось загрузить атрибуты. Возможно, у этой коллекции нет отдельных моделей или API временно недоступен.';document.getElementById('modelGrid').innerHTML='';}}
+function fillSelect(id,arr){let el=document.getElementById(id);el.innerHTML='';arr.forEach(x=>{let n=x.name||x.telegramName||x.title||x.symbol||String(x.id||'Attribute');let o=document.createElement('option');o.value=n;o.textContent=n+(x.rarity?' · '+x.rarity:'');el.appendChild(o)});if(!arr.length)el.innerHTML='<option>Нет данных</option>'}
+function closeModels(){document.getElementById('modelsModal').classList.remove('show')}
+function chooseTarget(){if(!modelsGift){let g=gifts[Math.floor(Math.random()*gifts.length)];if(g)openModels(g);else notify('Сначала загрузи каталог');return}openModels(modelsGift)}
+function renderInventory(){let el=document.getElementById('inventory');document.getElementById('invCount').textContent=inventory.length+' ПРЕДМЕТОВ';if(!inventory.length){el.innerHTML='<span class="muted">Добавь подарок из каталога через кнопку «В инвентарь».</span>';return}el.innerHTML='';inventory.forEach((it,i)=>{let b=document.createElement('button');b.className='invitem'+(selected===i?' selected':'');b.innerHTML='<b>🎁</b><span>'+escapeHTML(it.name)+'<br><small class="muted">'+escapeHTML(it.rarity)+'</small></span>';b.onclick=()=>selectItem(i);el.appendChild(b)})}
+function selectItem(i){selected=i;let it=inventory[i];document.getElementById('sourceName').textContent=it.name;document.getElementById('sourceRarity').textContent=it.rarity;document.getElementById('sourceAnim').innerHTML='<span class="emoji">🎁</span>';document.getElementById('chance').innerHTML='35<small>%</small>';document.getElementById('trackFill').style.width='35%';document.getElementById('runBtn').disabled=false;document.getElementById('runBtn').textContent='ЗАПУСТИТЬ АПГРЕЙД';renderInventory()}
+function runUpgrade(){if(selected<0||upgradeTimer)return;upgradeCancelled=false;let btn=document.getElementById('runBtn'),cancel=document.getElementById('cancelBtn'),fill=document.getElementById('trackFill'),p=0;btn.disabled=true;btn.textContent='АПГРЕЙД…';cancel.style.display='block';upgradeTimer=setInterval(()=>{if(upgradeCancelled){clearInterval(upgradeTimer);upgradeTimer=null;btn.disabled=false;btn.textContent='ЗАПУСТИТЬ АПГРЕЙД';cancel.style.display='none';fill.style.width='35%';notify('Апгрейд отменён — предмет сохранён');return}p+=4;fill.style.width=p+'%';if(p>=100){clearInterval(upgradeTimer);upgradeTimer=null;cancel.style.display='none';let success=Math.random()<.35;if(success){inventory[selected].rarity='Upgraded (demo)';inventory[selected].name+=' ★';notify('Условный успех! Это не изменение реального NFT.')}else{inventory.splice(selected,1);notify('Условная неудача: предмет убран из демо-инвентаря.')}selected=-1;document.getElementById('sourceName').textContent='Выбери предмет';document.getElementById('sourceRarity').textContent='—';document.getElementById('chance').innerHTML='—<small>%</small>';document.getElementById('trackFill').style.width='0';btn.disabled=true;btn.textContent='ВЫБЕРИ ПРЕДМЕТ';renderInventory();renderProfile()}},35)}
+function cancelUpgrade(){if(!upgradeTimer)return;upgradeCancelled=true}
+function renderProfile(){document.getElementById('statInv').textContent=inventory.length;document.getElementById('statOpen').textContent=added;document.getElementById('statStars').textContent=stars.toLocaleString('ru-RU');if(telegramUser){let name=[telegramUser.first_name,telegramUser.last_name].filter(Boolean).join(' ');document.getElementById('profileName').textContent=name||telegramUser.username||'Telegram user';document.getElementById('profileHandle').textContent=telegramUser.username?'@'+telegramUser.username:'Telegram';document.getElementById('profileAvatar').textContent=(name||'T')[0].toUpperCase();}}
+function loginTelegram(){document.getElementById('loginModal').classList.add('show')}
+function setupLogin(){let username=document.getElementById('botName').value.trim().replace(/^@/,'');if(!/^[a-zA-Z0-9_]{5,32}$/.test(username)){notify('Введи корректный username бота');return}let box=document.getElementById('loginWidget');box.innerHTML='';let s=document.createElement('script');s.async=true;s.src='https://telegram.org/js/telegram-widget.js?22';s.setAttribute('data-telegram-login',username);s.setAttribute('data-size','large');s.setAttribute('data-userpic','true');s.setAttribute('data-request-access','write');s.setAttribute('data-onauth','onTelegramAuth(user)');box.appendChild(s);notify('Виджет добавлен. Для доверенного входа настрой backend-проверку подписи.')}
+window.onTelegramAuth=function(user){telegramUser=user;document.getElementById('loginModal').classList.remove('show');document.getElementById('loginBtn').style.display='none';document.getElementById('userBox').style.display='flex';document.getElementById('userName').textContent=user.first_name||user.username||'Telegram';document.getElementById('userAvatar').textContent=(user.first_name||'T')[0].toUpperCase();renderProfile();notify('Telegram вернул профиль. Серверную проверку подписи нужно подключить перед production.')};
+loadCatalog();
+</script>
+</body></html>
